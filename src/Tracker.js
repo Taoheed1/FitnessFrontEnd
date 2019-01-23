@@ -1,10 +1,10 @@
 import React, { Component } from "react";
  
-class Programs extends Component {
+class Tracker extends Component {
   render() {
     return (
       <div>
-        <h2>Example Programs</h2>
+        <h2>Fitness Tracker</h2>
         <p>Cras facilisis urna ornare ex volutpat, et
         convallis erat elementum. Ut aliquam, ipsum vitae
         gravida suscipit, metus dui bibendum est, eget rhoncus nibh
@@ -18,4 +18,4 @@ class Programs extends Component {
   }
 }
  
-export default Programs;
+export default Tracker;
