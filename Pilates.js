@@ -1,10 +1,10 @@
 import React, { Component } from "react";
  
-class Login extends Component {
+class Pilates extends Component {
   render() {
     return (
       <div>
-        <h2>Login</h2>
+        <h2>Pilates Lifting Programs</h2>
         <p>Cras facilisis urna ornare ex volutpat, et
         convallis erat elementum. Ut aliquam, ipsum vitae
         gravida suscipit, metus dui bibendum est, eget rhoncus nibh
@@ -18,4 +18,4 @@ class Login extends Component {
   }
 }
  
-export default Login;
+export default Pilates;

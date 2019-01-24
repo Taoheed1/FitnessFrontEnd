@@ -1,64 +1,66 @@
 import React, { Component } from 'react';
 
 import Home from './Home';
+import Cardio from './Cardio';
+import Weights from './Weights';
+import Pilates from './Pilates';
 import Programs from './Programs';
+import HomeWorkouts from './HomeWorkouts';
+
+
 import Tracker from './Tracker';
 import Login from './Login';
 import Register from './Register';
 import ReactBootstrap, { Navbar, NavItem, NavDropdown, MenuItem, Nav, NavLink } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class NavBar extends Component {
 
     render() {
         return (
-
+            <Router>
+                <div>
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="#home">Lard Lad Fitness Tracker</a>
+                
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <LinkContainer to="home">
-                        <NavItem eventKey={1} href="#">Home </NavItem>
-                    </LinkContainer>
+                    <NavItem> <Link to="/">Home </Link> </NavItem>
+                        <Route exact path="/" component={Home} />
+                    <NavItem> <Link to="/Tracker"> Tracker</Link> </NavItem>
+                        <Route path="/Tracker" component={Tracker} />
+                    <NavDropdown title="Programs" id="basic-nav-dropdown">
 
-                    <LinkContainer to="programs">
-                        <NavDropdown eventKey={2} title="Programs" id="basic-nav-dropdown">
-                    </LinkContainer>
-
-                    <LinkContainer to="cardio">
-                            <MenuItem eventKey={2.1}>Cardio</MenuItem>
-                    </LinkContainer>
-
-                    <LinkContainer to="weights">
-                            <MenuItem eventKey={2.2}>Weights</MenuItem>
-                    </LinkContainer>
-
-                    <LinkContainer to="pilates">
-                            <MenuItem eventKey={2.3}>Pilates</MenuItem>
-                    </LinkContainer>
-
-                    <LinkContainer to "home-workout">
-                        <MenuItem eventKey={2.4}>Home Workouts</MenuItem>
-                    </LinkContainer>
-                        <MenuItem divider />
-                        <MenuItem eventKey={2.4}>All Programs</MenuItem>
+                        <li> <Link to ="/Cardio">Cardio </Link></li>
+                        <li> <Link to ="/Weights" >Weights</Link></li>
+                        <li> <Link to ="/Pilates">Pilates</Link></li>
+                        <li> <Link to ="/Home-Workouts">Home Workouts</Link></li>
+                        <li> <divider /></li>
+                        <li> <Link to ="/Programs">All Programs</Link></li>
                     </NavDropdown>
-
                 </Nav>
                 <Nav pullRight>
-                    <LinkContainer to="login">
-                        <NavItem eventKey={3} href="#">Login </NavItem>
-                    </LinkContainer>
-
-                    <LinkContainer to="register">
-                        <NavItem eventKey={4} href="#">Register </NavItem>
-                    </LinkContainer>
-
-
+                    <NavItem> <Link to="/Login">Login </Link> </NavItem>
+                    <NavItem> <Link to="/Register">Register </Link> </NavItem>
                 </Nav>
+                <Route path="/Cardio" component={Cardio} />
+                <Route path="/Weights" component={Weights} />
+                <Route path="/Pilates" component={Pilates} />
+                <Route path="/Programs" component={Programs} />
+                <Route path="/Home-Workouts" component={HomeWorkouts} />
+                <Route path="/Login" component={Login} />
+                <Route path="/Register" component={Register} />
+
+
             </Navbar>
+          
+          
+            </div>
+            </Router>
+
         );
     }
 
