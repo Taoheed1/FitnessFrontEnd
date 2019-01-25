@@ -1,16 +1,42 @@
 import React, { Component } from "react";
  
 class Register extends Component {
+
+constructor() {
+  super();
+  this.state = {
+    userName: null,
+    firstName: null,
+    lastName: null,
+    password: null
+  };
+}
+
+updateDetails(userNameInput, firstNameInput, lastNameInput, passwordInput) {
+  this.setState({
+    userName:userNameInput,
+    firstName:firstNameInput,
+    lastName:lastNameInput,
+    password:passwordInput
+  });
+}
+  getAccountDetails() {
+    axios.get()
+  }
+  registerAccount() {
+    axios.post('/user', {
+      firstName: firstName
+    })
+  }
   render() {
     return (
       <div>
         <h2>Register</h2>
-        <p>Cras facilisis urna ornare ex volutpat, et
-        convallis erat elementum. Ut aliquam, ipsum vitae
-        gravida suscipit, metus dui bibendum est, eget rhoncus nibh
-        metus nec massa. Maecenas hendrerit laoreet augue
-        nec molestie. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus.</p>
+       <form>
+         <input
+         type = "gfg"
+         onChange={(event) => {this.updateDetails(event.target.value)}}
+         value={this.state.userName}
  
         <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
       </div>

@@ -1,7 +1,30 @@
 import React, { Component } from "react";
- 
+import axios from 'axios'; 
 class Login extends Component {
+  
+  constructor() {
+    super(props);
+    this.state = {
+      userName: null,
+      password: null,
+      account: null,
+      loggedIn:false
+    }
+  }
+  
+  
+  getAllAccounts= () => {
+    var searchURL = "localhost:8080/fitnessapp/api/fitness/getAllUsers"
+    axios.get(searchURL).then(response => response.json()).then(data => {this.setState({account})})
+  }
+
+  handleChange(e) {
+    this.setState({ loggedIn: e.target.value });
+  }
+
+  
   render() {
+    
     return (
       <div>
         <h2>Login</h2>

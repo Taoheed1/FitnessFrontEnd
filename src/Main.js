@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import './App.css';
 import './bootstrap.css';
-import NavBar from './NavBar';
-import Home from './Home';
-import Programs from './Programs';
-import Tracker from './Tracker';
-import Login from './Login';
-import Register from './Register';
+
 
 class Main extends Component {
   render() {

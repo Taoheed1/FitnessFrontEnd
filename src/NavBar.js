@@ -6,11 +6,10 @@ import Weights from './Weights';
 import Pilates from './Pilates';
 import Programs from './Programs';
 import HomeWorkouts from './HomeWorkouts';
-
-
 import Tracker from './Tracker';
 import Login from './Login';
 import Register from './Register';
+
 import ReactBootstrap, { Navbar, NavItem, NavDropdown, MenuItem, Nav, NavLink } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
