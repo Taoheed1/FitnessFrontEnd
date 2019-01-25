@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from 'axios';
 class Programs extends Component {
 
   constructor(props) {
@@ -12,10 +12,10 @@ class Programs extends Component {
     this.handleChange = this.handleChange.bind(this)
     //this.handleSubmit = this.handleSubmit.bind(this)
   }
-  getAllPrograms = () => {
-    var searchURL = "localhost:8080/fitnessapp/api/fitness/getAllPrograms"
-    axios.get(searchURL).then(response => response.json()).then(data => { this.setState({ account }) })
-  }
+  // getAllPrograms = () => {
+  //   var searchURL = "localhost:8080/fitnessapp/api/fitness/getAllPrograms"
+  //   axios.get(searchURL).then(response => response.json()).then(data => { this.setState({ account }) })
+  // }
 
   render() {
     return (

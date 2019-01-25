@@ -19,7 +19,7 @@ class NavBar extends Component {
         return (
             <Router>
                 <div>
-            <Navbar>
+            <Navbar className>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="#home">Lard Lad Fitness Tracker</a>
