@@ -53,6 +53,14 @@ class NavBar extends Component {
                 <Route path="/Login" component={Login} />
                 <Route path="/Register" component={Register} />
 
+                {/* <Route path="/Programs/Cardio" component={Cardio} />
+                <Route path="/Programs/Weights" component={Weights} />
+                <Route path="/Programs/Pilates" component={Pilates} />
+                <Route path="/Programs/AllPrograms" component={Programs} />
+                <Route path="/Programs/Home-Workouts" component={HomeWorkouts} />
+                <Route path="/Programs/Login" component={Login} />
+                <Route path="/Programs/Register" component={Register} /> */}
+
 
             </Navbar>
           

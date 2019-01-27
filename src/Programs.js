@@ -5,7 +5,13 @@ class Programs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      programs: [],
+      programName: null,
+      exerciseName: null,
+      reps: null,
+      sets: null,
+      program: null,
+      programType: null,
+      searchProgram: null,
       isLoading: false,
       error: null
     };
@@ -16,10 +22,29 @@ class Programs extends Component {
   //   var searchURL = "localhost:8080/fitnessapp/api/fitness/getAllPrograms"
   //   axios.get(searchURL).then(response => response.json()).then(data => { this.setState({ account }) })
   // }
+  getAllPrograms = () =>
+    axios.get('http://localhost:8080/fitnessapp/api/fitness/getAllUsers' + this.state.programType).then(response => {
+      let temp = response.data;
+      for (let i = 0; i < temp.length; i++) {
+        if (this.state.programName || this.state.programType == this.state.searchProgram) {
+          // this.setState = program[i];
+          console.log("Program has been found");
+        }
+        else {
+          console.log("Program does not exist");
+        }
+      }
+    }).then(function (response) {
+      console.log(response.data);
+    })
+      .catch(function (error) {
+        console.log(error);
+      });
 
   render() {
+    const { programName, programType, program, searchProgram } = this.props;
     return (
-      <div>
+      <div className="programs">
         <h2>All Programs</h2>
         <p>Cras facilisis urna ornare ex volutpat, et
         convallis erat elementum. Ut aliquam, ipsum vitae
@@ -33,5 +58,5 @@ class Programs extends Component {
     );
   }
 }
-
+ 
 export default Programs;
