@@ -26,7 +26,7 @@ class Programs extends Component {
     axios.get('http://localhost:8080/fitnessapp/api/fitness/getAllUsers' + this.state.programType).then(response => {
       let temp = response.data;
       for (let i = 0; i < temp.length; i++) {
-        if (this.state.programName || this.state.programType == this.state.searchProgram) {
+        if ((temp[i].programName == this.state.searchProgram) || (this.state.programType == temp[i].programType)) {
           // this.setState = program[i];
           console.log("Program has been found");
         }

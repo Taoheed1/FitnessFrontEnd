@@ -51,10 +51,10 @@ class Register extends Component {
         <form onSubmit={this.handleSubmit}>
           <h2>Register</h2>
           <p>Username: </p>
-          <input id="text" type="text" onChange={(this.handleInput)}></input>
+          <input id="text" type="text" onChange={(this.handleChange)}></input>
           <p>Password: </p>
-          <input id="text" type="password" onChange={(this.handleInput)}></input><br /><br />
-          <input type="button" onClick={this.retrieveData} value="Sign Up"></input>
+          <input id="text" type="password" onChange={(this.handleChange)}></input><br /><br />
+          <input type="button" onClick={this.handleChange} value="Sign Up"></input>
           {/* <Field Component ="select" name="gender">
             <option value="male"> Male</option>
             <option value="female"> Female</option>
