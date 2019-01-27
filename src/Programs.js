@@ -42,9 +42,21 @@ class Programs extends Component {
       });
 
   render() {
-    const { programName, programType, program, searchProgram } = this.props;
+    const { programName, programType, exerciseName, reps, sets } = this.props;
+    const programList = program.map(program => {
+      return(
+        <div className="program">
+          <div>Program Name:{program.programName}</div>
+          <div>Program Type:{program.programType}</div>
+          <div>Exercise Name:{program.exerciseName}</div>
+          <div>Repetitions:{program.reps}</div>
+          <div>Sets:{program.sets}</div>
+        </div>
+      )
+    })
     return (
-      <div className="programs">
+      <div className="program-list">
+        {program-list}
         <h2>All Programs</h2>
         <p>Cras facilisis urna ornare ex volutpat, et
         convallis erat elementum. Ut aliquam, ipsum vitae
@@ -52,6 +64,9 @@ class Programs extends Component {
         metus nec massa. Maecenas hendrerit laoreet augue
         nec molestie. Cum sociis natoque penatibus et magnis
         dis parturient montes, nascetur ridiculus mus.</p>
+
+      
+
 
         <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
       </div>
