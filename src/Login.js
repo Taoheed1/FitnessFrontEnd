@@ -24,14 +24,14 @@ class Login extends Component {
 
   accountLogin = () =>
     axios.get('http://localhost:8080/fitnessapp/api/fitness/getAllUsers').then(response => {
-      let temp = response.data;
-      for (let i = 0; i < temp.length; i++) {
-        if (temp[i].username && this.state.password === this.state.username && temp[i].passWord) {
+      let userAccounts = response.data;
+      for (let i = 0; i < userAccounts.length; i++) {
+        if (userAccounts[i].username && this.state.password === this.state.username && userAccounts[i].passWord) {
           this.setState({
-            currentUser: temp[i]
+            currentUser: userAccounts[i]
           });
           console.log("Account log in successfull");
-          console.log("Currently logged in as: ", this.state.currentUser);
+          console.log("Currently logged in as: ", this.state.currentUser.username);
         } else {
           console.log("Login unsuccessful");
         }

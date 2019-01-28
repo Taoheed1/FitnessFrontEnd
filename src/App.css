@@ -28,8 +28,8 @@ body {
   background-size: cover;
   background-repeat: repeat;
   background-attachment: fixed;
-
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

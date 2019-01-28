@@ -68,7 +68,16 @@ class Register extends Component {
           <p>Proficiency: </p>
           <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br />
           <input type="button" onClick={this.handleSubmit} value="Sign Up"></input>
-          
+          {/* <div class="form-group">
+    <label for="proficiency">Proficiency</label>
+    <select multiple="" class="form-control" id="exampleFormControlSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div> */}
           {/* <Field Component ="select" name="gender">
             <option value="male"> Male</option>
             <option value="female"> Female</option>

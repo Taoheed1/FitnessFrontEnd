@@ -9,21 +9,15 @@ class Programs extends Component {
       exerciseName: null,
       reps: null,
       sets: null,
-      program: null,
+      program: [],
       programType: null,
       searchProgram: null,
       isLoading: false,
       error: null
     };
-    this.handleChange = this.handleChange.bind(this)
-    //this.handleSubmit = this.handleSubmit.bind(this)
   }
-  // getAllPrograms = () => {
-  //   var searchURL = "localhost:8080/fitnessapp/api/fitness/getAllPrograms"
-  //   axios.get(searchURL).then(response => response.json()).then(data => { this.setState({ account }) })
-  // }
   getAllPrograms = () =>
-    axios.get('http://localhost:8080/fitnessapp/api/fitness/getAllUsers' + this.state.programType).then(response => {
+    axios.get('http://localhost:8080/fitnessapp/api/fitness/getAllPrograms' + this.state.programType).then(response => {
       let temp = response.data;
       for (let i = 0; i < temp.length; i++) {
         if ((temp[i].programName === this.state.searchProgram) || (this.state.programType === temp[i].programType)) {
@@ -64,22 +58,30 @@ class Programs extends Component {
         metus nec massa. Maecenas hendrerit laoreet augue
         nec molestie. Cum sociis natoque penatibus et magnis
         dis parturient montes, nascetur ridiculus mus.</p>
-                <div>
-                      <form>
-
-                  <div class="input-field">
-
-                    <input type="text" class="form-control" placeholder="Search programs here" id="programSearch" />
-
-                  </div>
-                </form>
-                </div>
-
-
         <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
+
+        <div>
+          <form>
+
+            <div class="input-field">
+
+              <input type="text" class="form-control" placeholder="Search programs here" id="programSearch" />
+
+            </div>
+          </form>
+        </div>
+        <div className="program">
+          <p>{this.state.program.programName}</p>
+          <p>{this.state.program.programType}</p>
+          <p>{this.state.program.exerciseName}</p>
+          <p>{this.state.program.reps}</p>
+          <p>{this.state.program.sets}</p>
+        </div>
+
+
       </div>
     );
   }
 }
- 
+
 export default Programs;
