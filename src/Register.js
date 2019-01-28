@@ -7,21 +7,22 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      userName: null,
-      password: null,
-      proficiency: null,
-      programID: null
+      username: " ",
+      password: " ",
+      proficiency: " ",
+      programID: ""
     };
-    this.handleChange = this.handleChange.bind(this)
   }
 
 
 
   registerAccount = () =>
     axios.post('http://localhost:8080/fitnessapp/api/fitness/createAccount', {
-      userName: this.state.userName,
-      password: this.state.passWord,
-      proficiency: this.state.proficiency
+      data: {
+        username: this.state.username,
+        password: this.state.passWord,
+        proficiency: this.state.proficiency
+      }
     })
       .then(function (response) {
         console.log(response.data);
@@ -30,18 +31,28 @@ class Register extends Component {
         console.log(error);
       });
 
-  handleChange = (e) => {
-    this.setState({
-      userName: null,
-      password: null,
-      proficiency: null,
-      programID: null
-    })
+  handleUsernameChange = (e) => {
+    this.setState({ username: e.target.value });
     console.log(this.state);
   }
 
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
+    console.log(this.state);
+  }
+
+
+
+  handleProficiencyChange = (e) => {
+    this.setState({ proficiency: e.target.value });
+    console.log(this.state);
+  }
+
+
   handleSubmit = (e) => {
     e.preventDefault();
+    this.registerAccount();
+
   }
 
 
@@ -51,10 +62,13 @@ class Register extends Component {
         <form onSubmit={this.handleSubmit}>
           <h2>Register</h2>
           <p>Username: </p>
-          <input id="text" type="text" onChange={(this.handleChange)}></input>
+          <input id="username" type="text" value={this.state.username} onChange={(this.handleUsernameChange)}></input>
           <p>Password: </p>
-          <input id="text" type="password" onChange={(this.handleChange)}></input><br /><br />
-          <input type="button" onClick={this.handleChange} value="Sign Up"></input>
+          <input id="password" type="text" value={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
+          <p>Proficiency: </p>
+          <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br />
+          <input type="button" onClick={this.handleSubmit} value="Sign Up"></input>
+          
           {/* <Field Component ="select" name="gender">
             <option value="male"> Male</option>
             <option value="female"> Female</option>

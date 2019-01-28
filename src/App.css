@@ -27,7 +27,7 @@ body {
   background: url("kettle-bell.jpg");
   background-size: cover;
   background-repeat: repeat;
-  background-attachment: scroll;
+  background-attachment: fixed;
 
 }
 @keyframes App-logo-spin {

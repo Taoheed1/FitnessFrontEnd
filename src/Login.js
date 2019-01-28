@@ -5,20 +5,28 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: null,
+      username: null,
       password: null,
-      proficiency: null,
-      programID: null,
       currentUser: null,
       loggedIn: false
     }
+  }
+
+  handleUsernameChange = (e) => {
+    this.setState({ username: e.target.value });
+    console.log(this.state);
+  }
+
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
+    console.log(this.state);
   }
 
   accountLogin = () =>
     axios.get('http://localhost:8080/fitnessapp/api/fitness/getAllUsers').then(response => {
       let temp = response.data;
       for (let i = 0; i < temp.length; i++) {
-        if (temp[i].userName && this.state.password === this.state.userName && temp[i].passWord) {
+        if (temp[i].username && this.state.password === this.state.username && temp[i].passWord) {
           this.setState({
             currentUser: temp[i]
           });
@@ -36,23 +44,20 @@ class Login extends Component {
         console.log(error);
       });
 
-  handleChange = (e) => {
-    this.setState({
-      userName: e.target.value
-    });
-  }
   handleSubmit = (e) => {
     e.preventDefault();
+    this.accountLogin();
   }
+
   render() {
     return (
       <div className="login">
         <form onSubmit={this.handleSubmit}>
           <p>Username: </p>
-          <input id="text" type="text" onChange={(this.handleInput)}></input>
+          <input id="username" type="text" username={this.state.username} onChange={this.handleUsernameChange}></input>
           <p>Password: </p>
-          <input id="text" type="password" onChange={(this.handleInput)}></input><br /><br />
-          <input type="button" onClick={this.retrieveData} value="Sign In"></input>
+          <input id="password" type="password" password={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
+          <input type="button" password={this.state.value} onClick={this.handleSubmit} value="Sign In"></input>
 
         </form>
       </div>
