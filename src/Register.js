@@ -10,17 +10,17 @@ class Register extends Component {
       username: " ",
       password: " ",
       proficiency: " ",
-      programID: ""
+    
     };
   }
 
 
 
   registerAccount = () =>
-    axios.post('http://localhost:8080/fitnessapp/api/fitness/createAccount', {
+    axios.post('http://localhost:8081/fitnessapp/api/fitness/createAccount', {
       data: {
         username: this.state.username,
-        password: this.state.passWord,
+        password: this.state.password,
         proficiency: this.state.proficiency
       }
     })
@@ -30,6 +30,7 @@ class Register extends Component {
       .catch(function (error) {
         console.log(error);
       });
+
 
   handleUsernameChange = (e) => {
     this.setState({ username: e.target.value });
@@ -66,18 +67,16 @@ class Register extends Component {
           <p>Password: </p>
           <input id="password" type="text" value={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
           <p>Proficiency: </p>
-          <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br />
-          <input type="button" onClick={this.handleSubmit} value="Sign Up"></input>
-          {/* <div class="form-group">
+          {/* <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br /> */}
+           <input type="button" onClick={this.handleSubmit} value="Sign Up"></input>
+  <div class="form-group">
     <label for="proficiency">Proficiency</label>
-    <select multiple="" class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <select multiple="" class="form-control" id="ProficiencySelect" value={this.state.proficiency} onChange={this.handleProficiencyChange}>
+      <option>Beginner</option>
+      <option>Intermediate</option>
+      <option>Professional</option>
     </select>
-  </div> */}
+  </div>  
           {/* <Field Component ="select" name="gender">
             <option value="male"> Male</option>
             <option value="female"> Female</option>

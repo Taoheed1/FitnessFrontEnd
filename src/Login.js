@@ -21,12 +21,11 @@ class Login extends Component {
     this.setState({ password: e.target.value });
     console.log(this.state);
   }
-
   accountLogin = () =>
-    axios.get('http://localhost:8080/fitnessapp/api/fitness/getAllUsers').then(response => {
+    axios.get('http://localhost:8081/fitnessapp/api/fitness/getAllUsers').then(response => {
       let userAccounts = response.data;
       for (let i = 0; i < userAccounts.length; i++) {
-        if (userAccounts[i].username && this.state.password === this.state.username && userAccounts[i].passWord) {
+        if (userAccounts[i].username && this.state.username === this.state.password && userAccounts[i].passWord) {
           this.setState({
             currentUser: userAccounts[i]
           });
@@ -35,10 +34,7 @@ class Login extends Component {
         } else {
           console.log("Login unsuccessful");
         }
-
       }
-    }).then(function (response) {
-      console.log(response.data);
     })
       .catch(function (error) {
         console.log(error);
