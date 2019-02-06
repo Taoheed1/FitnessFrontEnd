@@ -26,6 +26,7 @@ class Login extends Component {
       let userAccounts = response.data;
       for (let i = 0; i < userAccounts.length; i++) {
         if (userAccounts[i].username && this.state.username === this.state.password && userAccounts[i].passWord) {
+          sessionStorage.setItem("loggedUser", response.data[0])
           this.setState({
             currentUser: userAccounts[i]
           });
@@ -35,6 +36,8 @@ class Login extends Component {
           console.log("Login unsuccessful");
         }
       }
+   
+   
     })
       .catch(function (error) {
         console.log(error);

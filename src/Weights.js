@@ -1,18 +1,66 @@
 import React, { Component } from "react";
- 
+import axios from 'axios';
 class Weights extends Component {
+   constructor(props) {
+    super(props);
+    this.state = {
+      programName: null,
+      exerciseName: null,
+      reps: null,
+      sets: null,
+      program: [],
+      programType: null,
+      searchProgram: null,
+      isLoading: false,
+      error: null
+    };
+  }
+
+  handleProgramSearch = (e) => {
+    this.setState({ program: e.target.value })
+    console.log(this.state)
+  }
+  componentDidMount() {
+      axios({
+            method: "get",
+            url: "http://localhost:8081/fitnessapp/api/fitness/getProgramsByType/Weights", 
+            responseType: "json"
+        }).then(response => {
+          console.log(response);
+            this.setState({ program: response.data });
+        })
+  }
   render() {
+     const Programs = this.state.program.map((prog, index) => (
+      <tr key={index}>
+        <td>{prog.programName}</td>
+        <td>{prog.programType}</td>
+        <td>{prog.exerciseName}</td>
+        <td>{prog.reps}</td>
+        <td>{prog.sets}</td>
+      </tr>))
     return (
       <div>
-        <h2>Weight Lifting Programs</h2>
-        <p>Cras facilisis urna ornare ex volutpat, et
-        convallis erat elementum. Ut aliquam, ipsum vitae
-        gravida suscipit, metus dui bibendum est, eget rhoncus nibh
-        metus nec massa. Maecenas hendrerit laoreet augue
-        nec molestie. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus.</p>
- 
-        <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
+        <div className="all-programs">
+
+        <div className="Program_info">
+          <h1>Weights</h1>
+          <table className="table ProgramTable">
+            <thead>
+              <tr>
+                <th>Program Name</th>
+                <th>Type</th>
+                <th>Exercise</th>
+                <th>Repetitions</th>
+                <th>Sets</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Programs}
+            </tbody>
+          </table>
+        </div>
+      </div>
       </div>
     );
   }

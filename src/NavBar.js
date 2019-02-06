@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Home from './Home';
 import Cardio from './Cardio';
 import Weights from './Weights';
-import Pilates from './Pilates';
 import Programs from './Programs';
 import HomeWorkouts from './HomeWorkouts';
 import Tracker from './Tracker';
@@ -34,9 +33,8 @@ class NavBar extends Component {
                                 <N.NavDropdown eventKey={3} title="Programs" id="basic-nav-dropdown">
                                     <N.MenuItem eventKey={3.1} href="/Cardio">Cardio</N.MenuItem>
                                     <N.MenuItem eventKey={3.2} href="/Weights">Weights</N.MenuItem>
-                                    <N.MenuItem eventKey={3.3} href="/Pilates">Pilates</N.MenuItem>
-                                    <N.MenuItem eventKey={3.4} href="/Home-Workouts">Home Workouts</N.MenuItem>
-                                    <N.MenuItem eventKey={3.5} href="/Programs">All Programs</N.MenuItem>
+                                    <N.MenuItem eventKey={3.3} href="/Home-Workouts">Home Workouts</N.MenuItem>
+                                    <N.MenuItem eventKey={3.4} href="/Programs">All Programs</N.MenuItem>
                                 </N.NavDropdown>
                             </N.Nav>
                             <N.Nav pullRight>
@@ -49,7 +47,6 @@ class NavBar extends Component {
                     <Route path="/Tracker" component={Tracker} />
                     <Route path="/Cardio" component={Cardio} />
                     <Route path="/Weights" component={Weights} />
-                    <Route path="/Pilates" component={Pilates} />
                     <Route path="/Programs" component={Programs} />
                     <Route path="/Home-Workouts" component={HomeWorkouts} />
                     <Route path="/Login" component={Login} />

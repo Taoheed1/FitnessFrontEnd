@@ -24,7 +24,7 @@
 }
 
 body {
-  background: url("kettle-bell.jpg");
+  /* background: url("kettle-bell.jpg"); */
   background-size: cover;
   background-repeat: repeat;
   background-attachment: fixed;

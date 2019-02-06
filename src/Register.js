@@ -15,23 +15,6 @@ class Register extends Component {
   }
 
 
-
-  registerAccount = () =>
-    axios.post('http://localhost:8081/fitnessapp/api/fitness/createAccount', {
-      data: {
-        username: this.state.username,
-        password: this.state.password,
-        proficiency: this.state.proficiency
-      }
-    })
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-
   handleUsernameChange = (e) => {
     this.setState({ username: e.target.value });
     console.log(this.state);
@@ -41,13 +24,32 @@ class Register extends Component {
     this.setState({ password: e.target.value });
     console.log(this.state);
   }
-
-
-
+  
   handleProficiencyChange = (e) => {
     this.setState({ proficiency: e.target.value });
     console.log(this.state);
   }
+
+  registerAccount = () => {
+    axios({
+      method:"post",
+      url:'http://localhost:8081/fitnessapp/api/fitness/createAccount',
+      data: {
+        username: this.state.username,
+        password: this.state.password,
+        proficiency: this.state.proficiency
+      }
+    });
+    this.props.history.push('/');
+  }
+      // .then(function (response) {
+      //   console.log(response.data);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
+
+
 
 
   handleSubmit = (e) => {

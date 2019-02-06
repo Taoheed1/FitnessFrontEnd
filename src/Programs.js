@@ -72,7 +72,6 @@ class Programs extends Component {
   //   })
 
   render() {
-  //  const { programName, programType, exerciseName, reps, sets } = this.props;
     const Programs = this.state.program.map((prog, index) => (
       <tr key={index}>
         <td>{prog.programName}</td>
@@ -87,11 +86,11 @@ class Programs extends Component {
       <div className="all-programs">
 
         <div className="Program_info">
-          <h1>Programs</h1>
+          <h1>All Programs</h1>
           <table className="table ProgramTable">
             <thead>
               <tr>
-                <th>Program</th>
+                <th>Program Name</th>
                 <th>Type</th>
                 <th>Exercise</th>
                 <th>Repetitions</th>
@@ -105,7 +104,7 @@ class Programs extends Component {
         </div>
         {/*         
 
-        <div>
+          <div>
           <form>
 
             <div className="input-field">
@@ -122,7 +121,7 @@ class Programs extends Component {
               </div>
             </div>
           </form>
-        </div> */}
+        </div>   */}
         {/* <Form>
           <Row form>
 
