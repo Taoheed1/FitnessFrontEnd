@@ -1,10 +1,12 @@
 import React, { Component } from "react";
- 
+import axios from 'axios';
+
 class Cardio extends Component {
    constructor(props) {
     super(props);
     this.state = {
       programName: null,
+      day: null,
       exerciseName: null,
       reps: null,
       sets: null,
@@ -34,6 +36,7 @@ class Cardio extends Component {
      const Programs = this.state.program.map((prog, index) => (
       <tr key={index}>
         <td>{prog.programName}</td>
+        <td>{prog.day}</td>
         <td>{prog.programType}</td>
         <td>{prog.exerciseName}</td>
         <td>{prog.reps}</td>
@@ -49,6 +52,7 @@ class Cardio extends Component {
             <thead>
               <tr>
                 <th>Program Name</th>
+                <th>Day</th>
                 <th>Type</th>
                 <th>Exercise</th>
                 <th>Repetitions</th>

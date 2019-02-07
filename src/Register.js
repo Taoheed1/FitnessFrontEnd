@@ -7,10 +7,10 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      username: " ",
-      password: " ",
+      username: "",
+      password: "",
       proficiency: " ",
-    
+
     };
   }
 
@@ -24,16 +24,17 @@ class Register extends Component {
     this.setState({ password: e.target.value });
     console.log(this.state);
   }
-  
+
   handleProficiencyChange = (e) => {
     this.setState({ proficiency: e.target.value });
     console.log(this.state);
   }
 
+
   registerAccount = () => {
     axios({
-      method:"post",
-      url:'http://localhost:8081/fitnessapp/api/fitness/createAccount',
+      method: "post",
+      url: 'http://localhost:8081/fitnessapp/api/fitness/createAccount',
       data: {
         username: this.state.username,
         password: this.state.password,
@@ -42,12 +43,12 @@ class Register extends Component {
     });
     this.props.history.push('/');
   }
-      // .then(function (response) {
-      //   console.log(response.data);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+  // .then(function (response) {
+  //   console.log(response.data);
+  // })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
 
 
 
@@ -65,20 +66,21 @@ class Register extends Component {
         <form onSubmit={this.handleSubmit}>
           <h2>Register</h2>
           <p>Username: </p>
-          <input id="username" type="text" value={this.state.username} onChange={(this.handleUsernameChange)}></input>
+          <input id="username" type="text" value={this.state.username} onChange={(this.handleUsernameChange)} placeholder="Username" ></input>
           <p>Password: </p>
-          <input id="password" type="text" value={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
-          <p>Proficiency: </p>
-          {/* <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br /> */}
-           <input type="button" onClick={this.handleSubmit} value="Sign Up"></input>
-  <div class="form-group">
-    <label for="proficiency">Proficiency</label>
-    <select multiple="" class="form-control" id="ProficiencySelect" value={this.state.proficiency} onChange={this.handleProficiencyChange}>
-      <option>Beginner</option>
-      <option>Intermediate</option>
-      <option>Professional</option>
-    </select>
-  </div>  
+          <input id="password" type="password" value={this.state.password} onChange={(this.handlePasswordChange)} placeholder="Password"></input><br /><br />
+          <div class="form-group">
+            <label for="proficiency">Proficiency</label>
+            <select multiple="" class="form-control" id="ProficiencySelect" value={this.state.proficiency} onChange={this.handleProficiencyChange}>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Professional</option>
+            </select>
+          </div>
+          {/* <p>Proficiency: </p>
+           <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br />  */}
+          <input type="button" onClick={this.registerAccount} value="Sign Up"></input>
+
           {/* <Field Component ="select" name="gender">
             <option value="male"> Male</option>
             <option value="female"> Female</option>

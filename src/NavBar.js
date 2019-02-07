@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Home from './Home';
 import Cardio from './Cardio';
 import Weights from './Weights';
+import Other from './Other';
 import Programs from './Programs';
 import HomeWorkouts from './HomeWorkouts';
 import Tracker from './Tracker';
@@ -34,12 +35,13 @@ class NavBar extends Component {
                                     <N.MenuItem eventKey={3.1} href="/Cardio">Cardio</N.MenuItem>
                                     <N.MenuItem eventKey={3.2} href="/Weights">Weights</N.MenuItem>
                                     <N.MenuItem eventKey={3.3} href="/Home-Workouts">Home Workouts</N.MenuItem>
-                                    <N.MenuItem eventKey={3.4} href="/Programs">All Programs</N.MenuItem>
+                                    <N.MenuItem eventKey={3.4} href="/Other">Other</N.MenuItem>
                                 </N.NavDropdown>
                             </N.Nav>
                             <N.Nav pullRight>
-                                <N.NavItem eventKey={4} title="Login" href="/Login">Login</N.NavItem>
-                                <N.NavItem eventKey={5} title="Register" href="/Register">Register</N.NavItem>
+                                <N.NavItem eventKey={4} title="Program Manager" href="/Manage-Programs">Manage Programs</N.NavItem>
+                                <N.NavItem eventKey={5} title="Login" href="/Login">Login</N.NavItem>
+                                <N.NavItem eventKey={6} title="Register" href="/Register">Register</N.NavItem>
                             </N.Nav>
                         </N.Navbar.Collapse>
                     </N.Navbar>
@@ -47,8 +49,9 @@ class NavBar extends Component {
                     <Route path="/Tracker" component={Tracker} />
                     <Route path="/Cardio" component={Cardio} />
                     <Route path="/Weights" component={Weights} />
-                    <Route path="/Programs" component={Programs} />
+                    <Route path="/Other" component={Other} />
                     <Route path="/Home-Workouts" component={HomeWorkouts} />
+                    <Route path="/Manage-Programs" component={Programs} />
                     <Route path="/Login" component={Login} />
                     <Route path="/Register" component={Register} />
 
