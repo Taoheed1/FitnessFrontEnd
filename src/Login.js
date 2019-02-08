@@ -22,13 +22,11 @@ class Login extends Component {
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
-
     });
     console.log(this.state)
   }
 
   handleSubmit = () => {
-    let loggedIn = false
     axios({
       method: "get",
       url: "http://localhost:8081/fitnessapp/api/fitness/getAllUsers",
@@ -37,66 +35,47 @@ class Login extends Component {
         let userAccounts = response.data;
         for (let i = 0; i < userAccounts.length; i++) {
           if ((this.state.userName === userAccounts[i].userName) && (this.state.password === userAccounts[i].password)) {
+            this.setState({
+              currentUser: userAccounts
+            });
             sessionStorage.setItem("Account", JSON.stringify(userAccounts[i]));
-            // let currentUser: userAccounts[i],
-            loggedIn = true;
             alert("Account successfully logged in.");
             console.log("Account log in successfull");
-            // console.log("Currently logged in as: ", this.state.currentUser.userName);
+
             this.props.history.push("/");
+          } else {
+            alert("Details entered are invalid. Please try again or register a new account.");
+            console.log("Login unsuccessful")};
           }
-        } if (loggedIn === false) {
-          alert("Details entered are invalid. Please try again or register a new account.");
-          console.log("Login unsuccessful");
-        }
-      }).catch(function (error) {
-        console.log(error);
-      });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   }
 
-  accountLogin = () =>
-    axios.get('http://localhost:8081/fitnessapp/api/fitness/getAllUsers').then(response => {
-      let userAccounts = response.data;
-      for (let i = 0; i < userAccounts.length; i++) {
-        if (userAccounts[i].userName && this.state.userName === this.state.password && userAccounts[i].passWord) {
-          sessionStorage.setItem("loggedUser", response.data[0])
-          this.setState({
-            currentUser: userAccounts[i],
-            loggedIn: true
-          });
-          console.log("Account log in successfull");
-          console.log("Currently logged in as: ", this.state.currentUser.userName);
-        } else {
-          console.log("Login unsuccessful");
-        }
-      }
-    })
-      .catch(function (error) {
-        console.log(error);
-      });
 
-  render() {
-    return (
-      <div className="login">
-        <h2>Login </h2>
+render() {
+  return (
+    <div className="login">
+      <h2>Login </h2>
 
-        <div className="Login">
-          <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId="username" bsSize="small">
-              <ControlLabel>Username</ControlLabel>
-              <FormControl autoFocus type="username" name="userName" value={this.state.userName} onChange={this.handleChange} />
-            </FormGroup>
+      <div className="Login">
+        <form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="username" bsSize="small">
+            <ControlLabel>Username</ControlLabel>
+            <FormControl autoFocus type="username" name="userName" value={this.state.userName} onChange={this.handleChange} />
+          </FormGroup>
 
-            <FormGroup controlId="password" bsSize="small">
-              <ControlLabel>Password</ControlLabel>
-              <FormControl name="password" value={this.state.password} onChange={this.handleChange} type="password" />
-            </FormGroup>
-            <Button block bsSize="large" disabled={!this.validateForm()} type="submit">Login</Button>
-          </form>
-        </div>
+          <FormGroup controlId="password" bsSize="small">
+            <ControlLabel>Password</ControlLabel>
+            <FormControl name="password" value={this.state.password} onChange={this.handleChange} type="password" />
+          </FormGroup>
+          <Button block bsSize="large" disabled={!this.validateForm()} type="submit">Login</Button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 export default Login;
