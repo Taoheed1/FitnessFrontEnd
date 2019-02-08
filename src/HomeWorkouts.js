@@ -23,14 +23,14 @@ class HomeWorkouts extends Component {
     console.log(this.state)
   }
   componentDidMount() {
-    axios({
-      method: "get",
-      url: "http://localhost:8081/fitnessapp/api/fitness/getProgramsByType/Home Workouts",
-      responseType: "json"
-    }).then(response => {
-      console.log(response);
-      this.setState({ program: response.data });
-    })
+      axios({
+            method: "get",
+            url: "http://localhost:8081/fitnessapp/api/fitness/getProgramsByType/Home Workouts", 
+            responseType: "json"
+        }).then(response => {
+          console.log(response);
+            this.setState({ program: response.data });
+        })
   }
   render() {
     const Programs = this.state.program.map((prog, index) => (

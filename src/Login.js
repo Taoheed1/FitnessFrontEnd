@@ -19,16 +19,6 @@ class Login extends Component {
     return this.state.userName.length > 0 && this.state.password.length > 0;
   }
 
-  // handleUsernameChange = (e) => {
-  //   this.setState({ userName: e.target.value });
-  //   console.log(this.state);
-  // }
-
-  // handlePasswordChange = (e) => {
-  //   this.setState({ password: e.target.value });
-  //   console.log(this.state);
-  // }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -130,8 +120,8 @@ class Login extends Component {
               bsSize="large"
               disabled={!this.validateForm()}
               type="submit"
-              
-             /* onClick={this.handleSubmit}*/
+
+            /* onClick={this.handleSubmit}*/
 
             >
               Login

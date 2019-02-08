@@ -30,7 +30,11 @@ class Register extends Component {
     console.log(this.state);
   }
 
-
+handleChange = (e) => {
+  this.setState({
+    [e.target.id]: e.target.value
+  });
+}
   registerAccount = () => {
     axios({
       method: "post",
@@ -41,7 +45,7 @@ class Register extends Component {
         proficiency: this.state.proficiency
       }
     });
-    this.props.history.push('/');
+    this.props.history.push('/Login');
   }
   // .then(function (response) {
   //   console.log(response.data);
@@ -66,12 +70,12 @@ class Register extends Component {
         <form onSubmit={this.handleSubmit}>
           <h2>Register</h2>
           <p>Username: </p>
-          <input id="username" type="text" value={this.state.username} onChange={(this.handleUsernameChange)} placeholder="Username" ></input>
+          <input id="username" type="text" value={this.state.username} id="userName" onChange={(this.handleChange)} placeholder="Username" ></input>
           <p>Password: </p>
-          <input id="password" type="password" value={this.state.password} onChange={(this.handlePasswordChange)} placeholder="Password"></input><br /><br />
+          <input id="password" type="password" value={this.state.password} id="password" onChange={(this.handleChange)} placeholder="Password"></input><br /><br />
           <div class="form-group">
             <label for="proficiency">Proficiency</label>
-            <select multiple="" class="form-control" id="ProficiencySelect" value={this.state.proficiency} onChange={this.handleProficiencyChange}>
+            <select multiple="" class="form-control" id="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
               <option>Beginner</option>
               <option>Intermediate</option>
               <option>Professional</option>
