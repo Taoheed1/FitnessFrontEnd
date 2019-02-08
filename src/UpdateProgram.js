@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-class CreateProgram extends Component {
+class UpdateProgram extends Component {
 
     constructor() {
         super();
         this.state = {
+            programID: null,
             programName: "",
             day: null,
             exerciseName: "",
@@ -25,8 +26,8 @@ class CreateProgram extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         axios({
-            method: "post",
-            url: "http://localhost:8081/fitnessapp/api/fitness/createProgram",
+            method: "put",
+            url: "http://localhost:8081/fitnessapp/api/fitness/updateProgram",
             data: {
                 programName: this.state.programName,
                 day: this.state.day,
@@ -46,7 +47,7 @@ class CreateProgram extends Component {
 
             <div>
                 <div className='createProgram'>
-                    <h2>Create a Program by filling in the details</h2>
+                    <h2>Update a Program by filling in the details</h2>
                     <form onSubmit={this.handleSubmit} className='createProgramForm'>
                         <input type='text' placeholder='Program name' id="programName" onChange={this.handleChange} />
                         <input type='text' placeholder='Program day' id="programDay" onChange={this.handleChange} />
@@ -64,4 +65,4 @@ class CreateProgram extends Component {
     }
 
 }
-export default CreateProgram;
+export default UpdateProgram;
