@@ -27,10 +27,6 @@ class Login extends Component {
     console.log(this.state)
   }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   this.accountLogin();
-  // }
   handleSubmit = () => {
     let loggedIn = false
     axios({
@@ -49,8 +45,7 @@ class Login extends Component {
             // console.log("Currently logged in as: ", this.state.currentUser.userName);
             this.props.history.push("/");
           }
-        }
-        if (loggedIn === false) {
+        } if (loggedIn === false) {
           alert("Details entered are invalid. Please try again or register a new account.");
           console.log("Login unsuccessful");
         }
@@ -80,52 +75,23 @@ class Login extends Component {
         console.log(error);
       });
 
-
-
   render() {
     return (
       <div className="login">
         <h2>Login </h2>
-        {/* <form onSubmit={this.handleSubmit}>
-          <input id="username" placeholder = "Username" type="text" username={this.state.userName} onChange={this.handleUsernameChange}></input>
-          <p></p>
-          <input id="password" placeholder = "Password" type="password" password={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
-          <input type="button" password={this.state.value} onClick={this.handleSubmit} value="Sign In"></input>
-
-        </form> */}
 
         <div className="Login">
           <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId="username" bsSize="lg">
+            <FormGroup controlId="username" bsSize="small">
               <ControlLabel>Username</ControlLabel>
-              <FormControl
-                autoFocus
-                type="username"
-                name="userName"
-                value={this.state.userName}
-                onChange={this.handleChange}
-              />
+              <FormControl autoFocus type="username" name="userName" value={this.state.userName} onChange={this.handleChange} />
             </FormGroup>
-            <FormGroup controlId="password" bsSize="lg">
+
+            <FormGroup controlId="password" bsSize="small">
               <ControlLabel>Password</ControlLabel>
-              <FormControl
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-                type="password"
-              />
+              <FormControl name="password" value={this.state.password} onChange={this.handleChange} type="password" />
             </FormGroup>
-            <Button
-              block
-              bsSize="large"
-              disabled={!this.validateForm()}
-              type="submit"
-
-            /* onClick={this.handleSubmit}*/
-
-            >
-              Login
-          </Button>
+            <Button block bsSize="large" disabled={!this.validateForm()} type="submit">Login</Button>
           </form>
         </div>
       </div>

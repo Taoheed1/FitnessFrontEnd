@@ -7,55 +7,36 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      userName: "",
       password: "",
       proficiency: " ",
 
     };
   }
 
-
-  handleUsernameChange = (e) => {
-    this.setState({ username: e.target.value });
-    console.log(this.state);
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
   }
-
-  handlePasswordChange = (e) => {
-    this.setState({ password: e.target.value });
-    console.log(this.state);
-  }
-
-  handleProficiencyChange = (e) => {
-    this.setState({ proficiency: e.target.value });
-    console.log(this.state);
-  }
-
-handleChange = (e) => {
-  this.setState({
-    [e.target.id]: e.target.value
-  });
-}
   registerAccount = () => {
     axios({
       method: "post",
       url: 'http://localhost:8081/fitnessapp/api/fitness/createAccount',
       data: {
-        username: this.state.username,
+        userName: this.state.userName,
         password: this.state.password,
         proficiency: this.state.proficiency
       }
     });
-    this.props.history.push('/Login');
+    this.props.history.push('/Login')
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
-  // .then(function (response) {
-  //   console.log(response.data);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-
-
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -63,14 +44,13 @@ handleChange = (e) => {
 
   }
 
-
   render() {
     return (
       <div className="register">
         <form onSubmit={this.handleSubmit}>
           <h2>Register</h2>
           <p>Username: </p>
-          <input id="username" type="text" value={this.state.username} id="userName" onChange={(this.handleChange)} placeholder="Username" ></input>
+          <input id="userName" type="text" value={this.state.userName} id="userName" onChange={(this.handleChange)} placeholder="Username" ></input>
           <p>Password: </p>
           <input id="password" type="password" value={this.state.password} id="password" onChange={(this.handleChange)} placeholder="Password"></input><br /><br />
           <div class="form-group">
@@ -81,8 +61,6 @@ handleChange = (e) => {
               <option>Professional</option>
             </select>
           </div>
-          {/* <p>Proficiency: </p>
-           <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br />  */}
           <input type="button" onClick={this.registerAccount} value="Sign Up"></input>
 
           {/* <Field Component ="select" name="gender">
