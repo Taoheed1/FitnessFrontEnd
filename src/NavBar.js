@@ -6,6 +6,7 @@ import Weights from './Weights';
 import Programs from './Programs';
 import HomeWorkouts from './HomeWorkouts';
 import Tracker from './Tracker';
+import ProgramManager from './ProgramManager';
 import Login from './Login';
 import Register from './Register';
 import * as N from 'react-bootstrap';
@@ -38,8 +39,9 @@ class NavBar extends Component {
                                 </N.NavDropdown>
                             </N.Nav>
                             <N.Nav pullRight>
-                                <N.NavItem eventKey={4} title="Login" href="/Login">Login</N.NavItem>
-                                <N.NavItem eventKey={5} title="Register" href="/Register">Register</N.NavItem>
+                                <N.NavItem eventKey={4} title="Program Manager" href="/ProgramManager"> Program Manager</N.NavItem>
+                                <N.NavItem eventKey={5} title="Login" href="/Login">Login</N.NavItem>
+                                <N.NavItem eventKey={6} title="Register" href="/Register">Register</N.NavItem>
                             </N.Nav>
                         </N.Navbar.Collapse>
                     </N.Navbar>
@@ -49,6 +51,7 @@ class NavBar extends Component {
                     <Route path="/Weights" component={Weights} />
                     <Route path="/Programs" component={Programs} />
                     <Route path="/Home-Workouts" component={HomeWorkouts} />
+                    <Route path="/ProgramManager" component={ProgramManager} />
                     <Route path="/Login" component={Login} />
                     <Route path="/Register" component={Register} />
 
