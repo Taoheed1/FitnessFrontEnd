@@ -16,7 +16,7 @@ class Register extends Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.name]: e.target.value
     });
   }
 
@@ -45,7 +45,6 @@ class Register extends Component {
   }
 
   render() {
-    if (JSON.parse(sessionStorage.getItem("Account")) === null) {
       return (
         <div className="register">
           <form onSubmit={this.handleSubmit}>
@@ -53,17 +52,17 @@ class Register extends Component {
 
             <FormGroup controlId="username" bsSize="small">
               <ControlLabel>Username</ControlLabel>
-              <FormControl autoFocus type="username" id="userName" value={this.state.userName} onChange={this.handleChange} />
+              <FormControl autoFocus type="username" name="userName" value={this.state.userName} onChange={this.handleChange} />
             </FormGroup>
 
             <FormGroup controlId="password" bsSize="small">
               <ControlLabel>Password</ControlLabel>
-              <FormControl id="password" value={this.state.password} onChange={this.handleChange} type="password" />
+              <FormControl name="password" value={this.state.password} onChange={this.handleChange} type="password" />
             </FormGroup>
 
             <FormGroup>
               <Label for="proficiencySelect">Proficiency</Label>
-              <Input type="select" name="select" id="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
+              <Input type="select" name="select" name="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
                 <option>Select</option>
                 <option>Beginner</option>
                 <option>Intermediate</option>
@@ -76,7 +75,7 @@ class Register extends Component {
           </form>
         </div>
       );
-    }
+    
   }
 }
 
