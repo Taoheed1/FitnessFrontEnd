@@ -4,19 +4,16 @@ class Weights extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      programName: null,
-      exerciseName: null,
-      day:null,
+      programName: "",
+      userName: "",
+      day: null,
+      exerciseName: "",
       reps: null,
       sets: null,
+      programType: "",
       program: [],
-      programType: null,
-      searchProgram: null,
-      isLoading: false,
-      error: null
     };
   }
-
 
   componentDidMount() {
     axios({
@@ -28,12 +25,14 @@ class Weights extends Component {
       this.setState({ program: response.data });
     })
   }
+
   render() {
     const Programs = this.state.program.map((prog, index) => (
       <tr key={index}>
+        <td>{prog.userName}</td>
+        <td>{prog.programID}</td>
         <td>{prog.programName}</td>
-                <td>{prog.day}</td>
-
+        <td>{prog.day}</td>
         <td>{prog.programType}</td>
         <td>{prog.exerciseName}</td>
         <td>{prog.reps}</td>
@@ -48,6 +47,8 @@ class Weights extends Component {
             <table className="table ProgramTable">
               <thead>
                 <tr>
+                  <th>Username</th>
+                  <th>Program ID</th>
                   <th>Program Name</th>
                   <th>Day</th>
                   <th>Type</th>

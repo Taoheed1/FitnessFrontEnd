@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-// import {Field} from 'formik';
+import { Form, Label, Input, FormText } from 'reactstrap';
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 class Register extends Component {
 
@@ -10,7 +11,6 @@ class Register extends Component {
       userName: "",
       password: "",
       proficiency: " ",
-
     };
   }
 
@@ -19,6 +19,7 @@ class Register extends Component {
       [e.target.id]: e.target.value
     });
   }
+
   registerAccount = () => {
     axios({
       method: "post",
@@ -28,8 +29,8 @@ class Register extends Component {
         password: this.state.password,
         proficiency: this.state.proficiency
       }
-    });
-    this.props.history.push('/Login')
+    })
+      // this.props.history.push('/Login')
       .then(function (response) {
         console.log(response.data);
       })
@@ -41,37 +42,41 @@ class Register extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.registerAccount();
-
   }
 
   render() {
-    return (
-      <div className="register">
-        <form onSubmit={this.handleSubmit}>
-          <h2>Register</h2>
-          <p>Username: </p>
-          <input id="userName" type="text" value={this.state.userName} id="userName" onChange={(this.handleChange)} placeholder="Username" ></input>
-          <p>Password: </p>
-          <input id="password" type="password" value={this.state.password} id="password" onChange={(this.handleChange)} placeholder="Password"></input><br /><br />
-          <div class="form-group">
-            <label for="proficiency">Proficiency</label>
-            <select multiple="" class="form-control" id="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
-              <option>Beginner</option>
-              <option>Intermediate</option>
-              <option>Professional</option>
-            </select>
-          </div>
-          <input type="button" onClick={this.registerAccount} value="Sign Up"></input>
+    if (JSON.parse(sessionStorage.getItem("Account")) === null) {
+      return (
+        <div className="register">
+          <form onSubmit={this.handleSubmit}>
+            <h2>Register</h2>
 
-          {/* <Field Component ="select" name="gender">
-            <option value="male"> Male</option>
-            <option value="female"> Female</option>
-            <option value="other"> Eldritch Horror</option>
-          </Field> */}
+            <FormGroup controlId="username" bsSize="small">
+              <ControlLabel>Username</ControlLabel>
+              <FormControl autoFocus type="username" id="userName" value={this.state.userName} onChange={this.handleChange} />
+            </FormGroup>
 
-        </form>
-      </div>
-    );
+            <FormGroup controlId="password" bsSize="small">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl id="password" value={this.state.password} onChange={this.handleChange} type="password" />
+            </FormGroup>
+
+            <FormGroup>
+              <Label for="proficiencySelect">Proficiency</Label>
+              <Input type="select" name="select" id="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
+                <option>Select</option>
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Professional</option>
+              </Input>
+            </FormGroup>
+
+            <input type="button" onClick={this.registerAccount} value="Sign Up"></input>
+
+          </form>
+        </div>
+      );
+    }
   }
 }
 

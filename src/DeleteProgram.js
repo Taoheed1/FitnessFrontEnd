@@ -8,11 +8,29 @@ class DeleteProgram extends Component {
         this.state = {
             programID: null,
             programName: null,
-            deleteSuccesful: false
+            deleteSuccesful: false,
+            userName: null
         }
     }
 
     handleSubmit = (e) => {
+        e.preventDefault();
+        axios({
+            method: "get",
+            url: "http://localhost:8081/fitnessapp/api/fitness/getProgramsByID/" + this.state.programID,
+            responseType: "json"
+        }).then(response => {
+            console.log(response);
+            this.setState({ program: response.data });
+            if (this.state.userName !== 'Admin') {
+                alert("Program cannot be deleted by current user")
+            } else {
+                this.handleDelete();
+            }
+        })
+    }
+
+    handleDelete = (e) => {
         e.preventDefault();
         axios({
             method: "delete",
@@ -26,17 +44,12 @@ class DeleteProgram extends Component {
                     deleteSuccesful: true
                 })
             })
-            .catch(function (error) {
-                console.log(error);
-                alert("Program delete failed");
-            });
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
-
     }
 
     render() {
@@ -47,7 +60,6 @@ class DeleteProgram extends Component {
                     <form onSubmit={this.handleSubmit} className='createProgramForm'>
                         <input type='text' placeholder='Program ID' id="programID" onChange={this.handleChange} />
                         <button type='submit' className='newProgramButton' >Delete Program </button>
-
                     </form>
                     {this.state.deleteSuccesful ?
                         <div>
@@ -55,9 +67,6 @@ class DeleteProgram extends Component {
                         </div>
                         : null}
                 </div>
-
-
-
             </div>
         );
     }

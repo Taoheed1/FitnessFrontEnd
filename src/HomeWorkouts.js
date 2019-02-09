@@ -5,16 +5,14 @@ class HomeWorkouts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      programName: null,
+      programName: "",
+      userName: "",
       day: null,
-      exerciseName: null,
+      exerciseName: "",
       reps: null,
       sets: null,
+      programType: "",
       program: [],
-      programType: null,
-      searchProgram: null,
-      isLoading: false,
-      error: null
     };
   }
 
@@ -23,18 +21,21 @@ class HomeWorkouts extends Component {
     console.log(this.state)
   }
   componentDidMount() {
-      axios({
-            method: "get",
-            url: "http://localhost:8081/fitnessapp/api/fitness/getProgramsByType/Home Workouts", 
-            responseType: "json"
-        }).then(response => {
-          console.log(response);
-            this.setState({ program: response.data });
-        })
+    axios({
+      method: "get",
+      url: "http://localhost:8081/fitnessapp/api/fitness/getProgramsByType/Home Workouts",
+      responseType: "json"
+    }).then(response => {
+      console.log(response);
+      this.setState({ program: response.data });
+    })
   }
+
   render() {
     const Programs = this.state.program.map((prog, index) => (
       <tr key={index}>
+        <td>{prog.userName}</td>
+        <td>{prog.programID}</td>
         <td>{prog.programName}</td>
         <td>{prog.day}</td>
         <td>{prog.programType}</td>
@@ -51,6 +52,8 @@ class HomeWorkouts extends Component {
             <table className="table ProgramTable">
               <thead>
                 <tr>
+                  <th>Username</th>
+                  <th>Program ID</th>
                   <th>Program Name</th>
                   <th>Day</th>
                   <th>Type</th>

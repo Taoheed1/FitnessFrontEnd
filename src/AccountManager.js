@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Login from 'Login';
 import Register from 'Register';
+
 class AccountManager extends Component {
 
     constructor(props) {
@@ -14,15 +15,12 @@ class AccountManager extends Component {
         }
     }
 
-    handleUsernameChange = (e) => {
-        this.setState({ username: e.target.value });
-        console.log(this.state);
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
 
-    handlePasswordChange = (e) => {
-        this.setState({ password: e.target.value });
-        console.log(this.state);
-    }
     accountLogin = () =>
         axios.get('http://localhost:8081/fitnessapp/api/fitness/getAllUsers').then(response => {
             let userAccounts = response.data;
@@ -60,8 +58,6 @@ class AccountManager extends Component {
                     <input id="password" type="password" password={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
                     <input type="button" password={this.state.value} onClick={this.handleSubmit} value="Sign In"></input>
                     <input type="button" password={this.state.value} onClick={this.handleSubmit} value="Register"></input>
-
-
                 </form>
             </div>
         );

@@ -7,6 +7,7 @@ class CreateProgram extends Component {
         super();
         this.state = {
             programName: "",
+            userName: "",
             day: null,
             exerciseName: "",
             reps: null,
@@ -29,6 +30,7 @@ class CreateProgram extends Component {
             url: "http://localhost:8081/fitnessapp/api/fitness/createProgram",
             data: {
                 programName: this.state.programName,
+                userName: JSON.parse(sessionStorage.getItem("Account")).userName,
                 day: this.state.day,
                 exerciseName: this.state.exerciseName,
                 reps: this.state.reps,
@@ -36,21 +38,15 @@ class CreateProgram extends Component {
                 programType: this.state.programType
             }
         })
-        .then(response => {
-            this.setState({
-                createSuccessful:true
-            }).catch(function (error) {
-                console.log(error);
-                alert("Program creation failed");
-            });
-        })
-     
+            .then(response => {
+                this.setState({
+                    createSuccessful: true
+                })
+            })
     }
 
     render() {
-        console.log(this.state);
         return (
-
             <div>
                 <div className='createProgram'>
                     <h2>Create a Program by filling in the details</h2>
@@ -63,16 +59,15 @@ class CreateProgram extends Component {
                         <input type='text' placeholder='Program type' id="programType" onChange={this.handleChange} />
                         <button type='submit' className='newProgramButton' >Submit Program </button>
                     </form>
-                     {this.state.createSuccessful ?
+                    {this.state.createSuccessful ?
                         <div>
                             <p> The program has been successfully created </p>
                         </div>
                         : null}
                 </div>
-
             </div>
         );
     }
-
 }
+
 export default CreateProgram;
