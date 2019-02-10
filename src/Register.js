@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { Form, Label, Input, FormText } from 'reactstrap';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Label, Input} from 'reactstrap';
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 class Register extends Component {
 
@@ -62,7 +62,7 @@ class Register extends Component {
 
             <FormGroup>
               <Label for="proficiencySelect">Proficiency</Label>
-              <Input type="select" name="select" name="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
+              <Input type="select" name="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
                 <option>Select</option>
                 <option>Beginner</option>
                 <option>Intermediate</option>
@@ -75,7 +75,6 @@ class Register extends Component {
           </form>
         </div>
       );
-    
   }
 }
 

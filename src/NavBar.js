@@ -4,7 +4,6 @@ import Home from './Home';
 import Cardio from './Cardio';
 import Weights from './Weights';
 import Other from './Other';
-import Programs from './Programs';
 import HomeWorkouts from './HomeWorkouts';
 import Tracker from './Tracker';
 import ProgramManager from './ProgramManager';
@@ -60,6 +59,5 @@ class NavBar extends Component {
             </Router>
         );
     }
-
 }
 export default NavBar;

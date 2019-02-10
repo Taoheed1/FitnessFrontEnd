@@ -7,7 +7,7 @@ class CreateProgram extends Component {
         super();
         this.state = {
             programName: "",
-            userName: "",
+            current_user: JSON.parse(sessionStorage.getItem("Account")).userName,
             day: null,
             exerciseName: "",
             reps: null,
