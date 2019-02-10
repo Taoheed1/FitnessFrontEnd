@@ -1,93 +1,79 @@
 import React, { Component } from "react";
 import axios from 'axios';
-// import {Field} from 'formik';
+import { Label, Input} from 'reactstrap';
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 class Register extends Component {
 
   constructor() {
     super();
     this.state = {
-      username: " ",
-      password: " ",
+      userName: "",
+      password: "",
       proficiency: " ",
-    
     };
   }
 
-
-  handleUsernameChange = (e) => {
-    this.setState({ username: e.target.value });
-    console.log(this.state);
-  }
-
-  handlePasswordChange = (e) => {
-    this.setState({ password: e.target.value });
-    console.log(this.state);
-  }
-  
-  handleProficiencyChange = (e) => {
-    this.setState({ proficiency: e.target.value });
-    console.log(this.state);
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   registerAccount = () => {
     axios({
-      method:"post",
-      url:'http://localhost:8081/fitnessapp/api/fitness/createAccount',
+      method: "post",
+      url: 'http://localhost:8081/fitnessapp/api/fitness/createAccount',
       data: {
-        username: this.state.username,
+        userName: this.state.userName,
         password: this.state.password,
         proficiency: this.state.proficiency
       }
-    });
-    this.props.history.push('/');
+    })
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
-      // .then(function (response) {
-      //   console.log(response.data);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
-
-
-
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.registerAccount();
-
   }
 
-
   render() {
-    return (
-      <div className="register">
-        <form onSubmit={this.handleSubmit}>
-          <h2>Register</h2>
-          <p>Username: </p>
-          <input id="username" type="text" value={this.state.username} onChange={(this.handleUsernameChange)}></input>
-          <p>Password: </p>
-          <input id="password" type="text" value={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
-          <p>Proficiency: </p>
-          {/* <input id="proficiency" type="text" value={this.state.proficiency} onChange={(this.handleProficiencyChange)}></input><br /><br /> */}
-           <input type="button" onClick={this.handleSubmit} value="Sign Up"></input>
-  <div class="form-group">
-    <label for="proficiency">Proficiency</label>
-    <select multiple="" class="form-control" id="ProficiencySelect" value={this.state.proficiency} onChange={this.handleProficiencyChange}>
-      <option>Beginner</option>
-      <option>Intermediate</option>
-      <option>Professional</option>
-    </select>
-  </div>  
-          {/* <Field Component ="select" name="gender">
-            <option value="male"> Male</option>
-            <option value="female"> Female</option>
-            <option value="other"> Eldritch Horror</option>
-          </Field> */}
+      return (
+        <div className="register">
+          <form onSubmit={this.handleSubmit}>
+            <h2>Register</h2>
 
-        </form>
-      </div>
-    );
+            <FormGroup controlId="username" bsSize="small">
+              <ControlLabel>Username</ControlLabel>
+              <FormControl autoFocus type="username" name="userName" value={this.state.userName} onChange={this.handleChange} />
+            </FormGroup>
+
+            <FormGroup controlId="password" bsSize="small">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl name="password" value={this.state.password} onChange={this.handleChange} type="password" />
+            </FormGroup>
+
+            <FormGroup>
+              <Label for="proficiencySelect">Proficiency</Label>
+              <Input type="select" name="proficiency" value={this.state.proficiency} onChange={this.handleChange}>
+                <option>Select</option>
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Professional</option>
+              </Input>
+            </FormGroup>
+
+            <input type="button" onClick={this.registerAccount} value="Sign Up"></input>
+
+          </form>
+        </div>
+      );
   }
 }
 

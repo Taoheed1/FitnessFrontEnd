@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-class CreateProgram extends Component {
+class UpdateProgram extends Component {
 
     constructor() {
         super();
         this.state = {
+            programID: null,
             programName: "",
-            currentUser:JSON.parse(sessionStorage.getItem("Account")).userName,
             day: null,
             exerciseName: "",
             reps: null,
             sets: null,
             programType: "",
-            createSuccessful: false
+            createProgram: false
         }
     }
 
@@ -26,23 +26,17 @@ class CreateProgram extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         axios({
-            method: "post",
-            url: "http://localhost:8081/fitnessapp/api/fitness/createProgram",
+            method: "put",
+            url: "http://localhost:8081/fitnessapp/api/fitness/updateProgram",
             data: {
                 programName: this.state.programName,
-                userName: JSON.parse(sessionStorage.getItem("Account")).userName,
                 day: this.state.day,
                 exerciseName: this.state.exerciseName,
                 reps: this.state.reps,
                 sets: this.state.sets,
                 programType: this.state.programType
             }
-        })
-        .then(response => {
-            this.setState({
-                createSuccessful:true
-            })
-        })
+        });     
     }
 
     render() {
@@ -51,7 +45,7 @@ class CreateProgram extends Component {
 
             <div>
                 <div className='createProgram'>
-                    <h2>Create a Program by filling in the details</h2>
+                    <h2>Update a Program by filling in the details</h2>
                     <form onSubmit={this.handleSubmit} className='createProgramForm'>
                         <input type='text' placeholder='Program name' id="programName" onChange={this.handleChange} />
                         <input type='text' placeholder='Program day' id="programDay" onChange={this.handleChange} />
@@ -60,17 +54,11 @@ class CreateProgram extends Component {
                         <input type='text' placeholder='Sets' id="sets" onChange={this.handleChange} />
                         <input type='text' placeholder='Program type' id="programType" onChange={this.handleChange} />
                         <button type='submit' className='newProgramButton' >Submit Program </button>
-                    </form>
-                     {this.state.createSuccessful ?
-                        <div>
-                            <p> The program has been successfully created </p>
-                        </div>
-                        : null}
-                </div>
 
+                    </form>
+                </div>
             </div>
         );
     }
-
 }
-export default CreateProgram;
+export default UpdateProgram;

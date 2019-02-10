@@ -1,64 +1,77 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+
 class Login extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      username: null,
-      password: null,
+      userName: "",
+      password: "",
       currentUser: null,
       loggedIn: false
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleUsernameChange = (e) => {
-    this.setState({ username: e.target.value });
-    console.log(this.state);
+  validateForm() {
+    return this.state.userName.length > 0 && this.state.password.length > 0;
   }
 
-  handlePasswordChange = (e) => {
-    this.setState({ password: e.target.value });
-    console.log(this.state);
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+    console.log(this.state)
   }
-  accountLogin = () =>
-    axios.get('http://localhost:8081/fitnessapp/api/fitness/getAllUsers').then(response => {
-      let userAccounts = response.data;
-      for (let i = 0; i < userAccounts.length; i++) {
-        if (userAccounts[i].username && this.state.username === this.state.password && userAccounts[i].passWord) {
-          sessionStorage.setItem("loggedUser", response.data[0])
-          this.setState({
-            currentUser: userAccounts[i]
-          });
-          console.log("Account log in successfull");
-          console.log("Currently logged in as: ", this.state.currentUser.username);
-        } else {
-          console.log("Login unsuccessful");
-        }
-      }
-   
-   
+
+  handleSubmit = () => {
+    let loggedIn = false
+    axios({
+      method: "get",
+      url: "http://localhost:8081/fitnessapp/api/fitness/getAllUsers",
     })
-      .catch(function (error) {
+      .then(response => {
+        let userAccounts = response.data;
+        for (let i = 0; i < userAccounts.length; i++) {
+          if ((this.state.userName === userAccounts[i].userName) && (this.state.password === userAccounts[i].password)) {
+            this.setState({
+              currentUser: userAccounts,
+              loggedIn: true
+            });
+            alert("Account successfully logged in.");
+            console.log("Account log in successfull");
+            sessionStorage.setItem("Account", JSON.stringify(userAccounts[i]));
+   
+            this.props.history.push("/");
+          }
+        }
+      }).catch(function (error) {
         console.log(error);
       });
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.accountLogin();
   }
 
   render() {
     return (
       <div className="login">
-        <form onSubmit={this.handleSubmit}>
-          <p>Username: </p>
-          <input id="username" type="text" username={this.state.username} onChange={this.handleUsernameChange}></input>
-          <p>Password: </p>
-          <input id="password" type="password" password={this.state.password} onChange={(this.handlePasswordChange)}></input><br /><br />
-          <input type="button" password={this.state.value} onClick={this.handleSubmit} value="Sign In"></input>
+        <h2>Login </h2>
 
-        </form>
+        <div className="Login">
+          <form onSubmit={this.handleSubmit}>
+            <FormGroup controlId="username" bsSize="small">
+              <ControlLabel>Username</ControlLabel>
+              <FormControl autoFocus type="username" name="userName" value={this.state.userName} onChange={this.handleChange} />
+            </FormGroup>
+
+            <FormGroup controlId="password" bsSize="small">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl name="password" value={this.state.password} onChange={this.handleChange} type="password" />
+            </FormGroup>
+            <Button block bsSize="large" disabled={!this.validateForm()} type="submit">Login</Button>
+          </form>
+        </div>
+
       </div>
     );
   }
