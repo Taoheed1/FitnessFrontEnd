@@ -8,7 +8,7 @@ class DeleteProgram extends Component {
         this.state = {
             programID: null,
             programName: null,
-            deleteSuccesful: false
+            deleteSuccesful: false,
         }
     }
 
@@ -26,10 +26,6 @@ class DeleteProgram extends Component {
                     deleteSuccesful: true
                 })
             })
-            .catch(function (error) {
-                console.log(error);
-                alert("Program delete failed");
-            });
     }
 
     handleChange = (e) => {

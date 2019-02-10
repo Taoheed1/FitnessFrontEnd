@@ -12,9 +12,10 @@ class AccountManager extends Component {
         }
     }
 
-    handleChange = (e) => {
-        this.setState({ [e.target.id]: e.target.value });
-        console.log(this.state);
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
 
     accountLogin = () =>

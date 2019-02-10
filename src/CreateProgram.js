@@ -46,9 +46,7 @@ class CreateProgram extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
-
             <div>
                 <div className='createProgram'>
                     <h2>Create a Program by filling in the details</h2>
@@ -61,16 +59,15 @@ class CreateProgram extends Component {
                         <input type='text' placeholder='Program type' id="programType" onChange={this.handleChange} />
                         <button type='submit' className='newProgramButton' >Submit Program </button>
                     </form>
-                     {this.state.createSuccessful ?
+                    {this.state.createSuccessful ?
                         <div>
                             <p> The program has been successfully created </p>
                         </div>
                         : null}
                 </div>
-
             </div>
         );
     }
-
 }
+
 export default CreateProgram;

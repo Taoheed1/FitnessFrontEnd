@@ -10,9 +10,8 @@ class Weights extends Component {
       day:null,
       reps: null,
       sets: null,
+      programType: "",
       program: [],
-      programType: null,
-
     };
   }
 

@@ -26,8 +26,12 @@ class Login extends Component {
     console.log(this.state)
   }
 
+  resetSession = () => {
+    sessionStorage.clear();
+    // this.props.history.push("/");
+  }
+
   handleSubmit = () => {
-    let loggedIn = false
     axios({
       method: "get",
       url: "http://localhost:8081/fitnessapp/api/fitness/getAllUsers",
@@ -47,7 +51,8 @@ class Login extends Component {
             this.props.history.push("/");
           }
         }
-      }).catch(function (error) {
+      })
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -57,8 +62,9 @@ class Login extends Component {
       <div className="login">
         <h2>Login </h2>
 
+
         <div className="Login">
-          <form onSubmit={this.handleSubmit}>
+          <form >
             <FormGroup controlId="username" bsSize="small">
               <ControlLabel>Username</ControlLabel>
               <FormControl autoFocus type="username" name="userName" value={this.state.userName} onChange={this.handleChange} />
@@ -68,12 +74,14 @@ class Login extends Component {
               <ControlLabel>Password</ControlLabel>
               <FormControl name="password" value={this.state.password} onChange={this.handleChange} type="password" />
             </FormGroup>
-            <Button block bsSize="large" disabled={!this.validateForm()} type="submit">Login</Button>
+            <Button block bsSize="large" disabled={!this.validateForm()} onClick={this.handleSubmit}>Login</Button>
           </form>
         </div>
-
+        <div className="Logout">
+          <button onClick={this.resetSession}>Logout</button>
+        </div>
       </div>
-    );
+    )
   }
 }
 
